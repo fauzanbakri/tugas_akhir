@@ -86,7 +86,7 @@ void receivedCallback( uint32_t from, String &msg ) {
 //    Serial.print(id);
 //    Serial.print("\n");  
   if  (String(check)==id) {
-    int timelast = timetemp+30;
+    int timelast = timetemp+120;
     int timenow = (hour(now).toInt() * 3600) + (minute(now).toInt() * 60) + second(now).toInt();
     int date_now = date(now).toInt();
     int month_now = month(now).toInt();

@@ -97,11 +97,9 @@ void receivedCallback( uint32_t from, String &msg ) {
     Serial.print("timenow = ");
     Serial.print(timenow);
     Serial.print("\n");
-//     || date_now > date_temp || month_now > month_temp || year_now > year_temp
-    if  (timenow > timelast){
+    if  (timenow > timelast || date_now > date_temp || month_now > month_temp || year_now > year_temp){
       SD.remove("from.csv");
       timetemp = (hour(now).toInt() * 3600) + (minute(now).toInt() * 60) + second(now).toInt();
-      Serial.print("cekkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk ifffffffffff");
     }else{
       Serial.print("wait 30 second to accept from same node\n");
     }

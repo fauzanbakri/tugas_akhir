@@ -471,17 +471,6 @@ void dht22(){
     hum = dht.readHumidity();
     temperature= dht.readTemperature();
 }
-//void mqtt(){
-//  String mqtt_msg;
-//    myFile1 = SD.open("rcvdata.csv", FILE_READ);
-//  while (myFile1.available()) {
-//    mqtt_msg += (char)myFile1.read();
-//  }
-//  myFile1.close();
-//  Serial.println(mqtt_msg.c_str());
-//    client.connect("send", mqtt_username, mqtt_password);
-//    client.publish("tes", "28,6,30.00,81.10,0.00,,,00/00/2000,08:00:00,3256231388,end#27,6,30.00,81.50,0.00,,,00/00/2000,08:00:00,3256231388,end#23,21,nan,nan,0.00,,,00/00/2000,08:00:00,840990861,end#");
-//}
 void mqtt(){
   String mqtt_msg, rows, carbondioxide,carbonmonoxide,temper,humidi,pm25dsm,latt,longit,daterecord,timerecord,id_esp;
   int m=0, ct=0, count=0;
@@ -521,10 +510,26 @@ void mqtt(){
     Serial.println(String(temper)); 
     Serial.println(String(humidi));
     Serial.println(String(pm25dsm));
+    Serial.println(String(latt));
+    Serial.println(String(longit));
+    Serial.println(String(daterecord));
+    Serial.println(String(timerecord));    
     Serial.println(String(id_esp));
+  
+    client.publish("gateway/co2", carbondioxide.c_str());
+    client.publish("gateway/co", carbonmonoxide.c_str());
+    client.publish("gateway/temperature", temper.c_str());
+    client.publish("gateway/humidity", humidi.c_str());
+    client.publish("gateway/pm2.5", pm25dsm.c_str());
+    client.publish("gateway/lattitude", latt.c_str());
+    client.publish("gateway/longitude", longit.c_str());
+    client.publish("gateway/date", daterecord.c_str());  
+    client.publish("gateway/time", timerecord.c_str());
+    client.publish("gateway/id", id_esp.c_str());
+    client.publish("gateway/date_send", date_str.c_str());
+    client.publish("gateway/time_send", time_str.c_str());       
+
     count++;
-    client.publish("gateway/temp", temper.c_str());
-    client.publish("gateway/hum", humidi.c_str());
   } 
     
     

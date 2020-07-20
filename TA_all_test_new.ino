@@ -262,23 +262,7 @@ void loop() {
   } else {
     mqtt();
   }
-//  if (restart_esp == 1){
-//    SD.remove("bootmode.txt");
-//    myFile7 = SD.open("bootmode.txt", FILE_WRITE);
-//    if (myFile7) {
-//      myFile7.println("1");
-//      Serial.println("done write bootmode.txt");
-//      myFile7.close();
-//    } else {
-//      Serial.println("error writing bootmode.txt");
-//    }
-//  ESP.restart();
-//  }
-
-//  
-//  if (digitalRead(16) != a){
-//    ESP.restart();
-//  }
+  
   gps_read2();
   dht22();
   mq135_mq7();
